@@ -26,5 +26,7 @@ export default function (deviceId) {
         })
       })
     })
-    .catch(console.error.bind(console))
+    .catch(error => {
+      throw new Error('Error', { cause: error })
+    })
 }

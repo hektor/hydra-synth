@@ -112,9 +112,9 @@ class HydraRenderer {
         this.captureStream = this.canvas.captureStream(25)
         // to do: enable capture stream of specific sources and outputs
         this.synth.vidRecorder = new VidRecorder(this.captureStream)
-      } catch (e) {
+      } catch (error) {
         console.warn('[hydra-synth warning]\nnew MediaSource() is not currently supported on iOS.')
-        console.error(e)
+        throw new Error(error)
       }
     }
 
@@ -429,7 +429,11 @@ class HydraRenderer {
     //  console.log(1000/this.timeSinceLastUpdate)
       this.synth.stats.fps = Math.ceil(1000/this.timeSinceLastUpdate)
       if(this.synth.update) {
-        try { this.synth.update(this.timeSinceLastUpdate) } catch (e) { console.error(e) }
+        try {
+          this.synth.update(this.timeSinceLastUpdate)
+        } catch (error) {
+          throw new Error(error)
+        }
       }
     //  console.log(this.synth.speed, this.synth.time)
       for (let i = 0; i < this.s.length; i++) {

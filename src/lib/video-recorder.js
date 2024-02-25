@@ -25,24 +25,24 @@ class VideoRecorder {
     this.recordedBlobs = []
     try {
      this.mediaRecorder = new MediaRecorder(this.stream, options)
-    } catch (e0) {
-     console.error('Unable to create MediaRecorder with options Object: ', e0)
+    } catch (error0) {
+     console.error('Unable to create MediaRecorder with options Object: ', error0)
      try {
        options = {mimeType: 'video/webm,codecs=vp9'}
        this.mediaRecorder = new MediaRecorder(this.stream, options)
-     } catch (e1) {
-       console.error('Unable to create MediaRecorder with options Object: ', e1)
+     } catch (error1) {
+       console.error('Unable to create MediaRecorder with options Object: ', error1)
        try {
          options = 'video/vp8' // Chrome 47
          this.mediaRecorder = new MediaRecorder(this.stream, options)
-       } catch (e2) {
-         alert('MediaRecorder is not supported by this browser.\n\n' +
+       } catch (error2) {
+         console.warn('MediaRecorder is not supported by this browser.\n\n' +
            'Try Firefox 29 or later, or Chrome 47 or later, ' +
            'with Enable experimental Web Platform features enabled from chrome://flags.')
-         console.error('Exception while creating MediaRecorder:', e2)
-         return
+         console.error('Exception while creating MediaRecorder:', error2)
        }
      }
+     throw new Error('Could not create MediaRecorder')
    }
    console.log('Created MediaRecorder', this.mediaRecorder, 'with options', options);
    this.mediaRecorder.onstop = this._handleStop.bind(this)

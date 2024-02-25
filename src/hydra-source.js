@@ -32,7 +32,9 @@ class HydraSource {
         self.dynamic = true
         self.tex = self.regl.texture({ data: self.src, ...params })
       })
-      .catch(err => console.error('Could not get camera', err))
+      .catch(error => {
+        throw new Error('Could not get camera', { cause: error })
+      })
   }
 
   initVideo (url = '', params) {
@@ -88,7 +90,9 @@ class HydraSource {
         self.dynamic = true
         //  console.log("received screen input")
       })
-      .catch(err => console.error('Could not get screen', err))
+      .catch(error => {
+        throw new Error('Could not get screen', { cause: error })
+      })
   }
 
   resize (width, height) {

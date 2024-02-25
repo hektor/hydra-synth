@@ -9,6 +9,6 @@ export default function (options) {
         video.play()
         resolve({video: video})
       })
-    }).catch((err) => reject(err))
+    }).catch((error) => reject(error))
   })
 }

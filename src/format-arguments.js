@@ -49,8 +49,8 @@ export default function formatArguments(transform, startIndex, synthContext) {
     if (input.type.startsWith('vec')) {
       try {
         typedArg.vecLen = Number.parseInt(input.type.substr(3))
-      } catch (e) {
-        console.error(`Error determining length of vector input type ${input.type} (${input.name})`)
+      } catch (error) {
+        throw new Error(`Error determining length of vector input type ${input.type} (${input.name})`)
       }
     }
 
@@ -72,9 +72,8 @@ export default function formatArguments(transform, startIndex, synthContext) {
               console.warn('function does not return a number', userArgs[index])
             }
             return input.default
-          } catch (e) {
-            console.error('Error', e)
-            return input.default
+          } catch (error) {
+            throw new Error('Error', { cause: error })
           }
         }
         //  }

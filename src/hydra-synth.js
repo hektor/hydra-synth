@@ -429,7 +429,7 @@ class HydraRenderer {
     //  console.log(1000/this.timeSinceLastUpdate)
       this.synth.stats.fps = Math.ceil(1000/this.timeSinceLastUpdate)
       if(this.synth.update) {
-        try { this.synth.update(this.timeSinceLastUpdate) } catch (e) { console.log(e) }
+        try { this.synth.update(this.timeSinceLastUpdate) } catch (e) { console.error(e) }
       }
     //  console.log(this.synth.speed, this.synth.time)
       for (let i = 0; i < this.s.length; i++) {

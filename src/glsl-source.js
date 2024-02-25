@@ -26,7 +26,7 @@ GlslSource.prototype.out = function (_output) {
   if(output) try{
     output.render(glsl)
   } catch (error) {
-    console.log('shader could not compile', error)
+    console.error('Shader could not compile', error)
   }
 }
 

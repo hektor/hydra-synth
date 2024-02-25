@@ -26,12 +26,12 @@ class VideoRecorder {
     try {
      this.mediaRecorder = new MediaRecorder(this.stream, options)
     } catch (e0) {
-     console.log('Unable to create MediaRecorder with options Object: ', e0)
+     console.error('Unable to create MediaRecorder with options Object: ', e0)
      try {
        options = {mimeType: 'video/webm,codecs=vp9'}
        this.mediaRecorder = new MediaRecorder(this.stream, options)
      } catch (e1) {
-       console.log('Unable to create MediaRecorder with options Object: ', e1)
+       console.error('Unable to create MediaRecorder with options Object: ', e1)
        try {
          options = 'video/vp8' // Chrome 47
          this.mediaRecorder = new MediaRecorder(this.stream, options)

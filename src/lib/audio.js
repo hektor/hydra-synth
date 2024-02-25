@@ -66,7 +66,7 @@ class Audio {
           ]
         })
       })
-      .catch((err) => console.log('ERROR', err))
+      .catch((err) => console.error('Error', err))
     }
   }
 

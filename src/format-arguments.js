@@ -50,7 +50,7 @@ export default function formatArguments(transform, startIndex, synthContext) {
       try {
         typedArg.vecLen = Number.parseInt(input.type.substr(3))
       } catch (e) {
-        console.log(`Error determining length of vector input type ${input.type} (${input.name})`)
+        console.error(`Error determining length of vector input type ${input.type} (${input.name})`)
       }
     }
 
@@ -73,7 +73,7 @@ export default function formatArguments(transform, startIndex, synthContext) {
             }
             return input.default
           } catch (e) {
-            console.warn('ERROR', e)
+            console.error('Error', e)
             return input.default
           }
         }
